@@ -18,9 +18,21 @@ import {
 import { sidebarData } from "@/lib/constants/nav.data";
 import { NavMain } from "./app-sidebar-main";
 import { NavSecondary } from "./app-sidebar-secondary";
-import { Search } from "lucide-react";
+import { LogOut, Search } from "lucide-react";
+import { clearAuthSession } from "@/store/auth-store";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    clearAuthSession();
+    toast.info("You have been successfully logged out.");
+    router.push("/sign-in");
+  };
+
   return (
     <Sidebar collapsible="icon" {...props} className="bg-[#FFFFFF]">
       <SidebarHeader>
@@ -33,7 +45,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <div className="flex justify-between items-center gap-2">
                 <a href="#" className="flex items-center gap-2">
-                  <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <div className="text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                     <Image
                       src="/images/getstac-logo.png"
                       sizes="20px"
@@ -43,7 +55,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     />
                   </div>
                   <div className="flex flex-col gap-0.5 leading-none">
-                    <span className="font-medium">GETSTAC</span>
+                    <span className="font-semibold text-[#101010] text-xl">
+                      GETSTAC
+                    </span>
                   </div>
                 </a>
                 <SidebarTrigger className="-ml-1" />
@@ -63,6 +77,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
         <NavMain items={sidebarData.navMain} />
         <NavSecondary items={sidebarData.support} />
+        <div className="flex items-center justify-end gap-2 px-3 py-2 mt-auto">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-red-600 h-10 bg-transparent hover:text-red-500"
+            onClick={handleLogout}
+          >
+            <LogOut className="h-4 w-4" />
+          </Button>
+        </div>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

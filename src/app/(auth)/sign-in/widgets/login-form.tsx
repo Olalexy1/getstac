@@ -87,8 +87,8 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="w-full max-w-md border border-border bg-card p-8 shadow-lg">
-        <h1 className="mb-8 text-2xl font-semibold text-card-foreground">
+      <div className="w-full md:w-[450px] border border-border p-12 shadow-lg bg-[#FFFFFF]">
+        <h1 className="text-xl font-semibold text-[#52525B] mb-3">
           Sign in to your account
         </h1>
 
@@ -97,14 +97,14 @@ export default function LoginForm() {
             onSubmit={form.handleSubmit(onSubmit, (error) =>
               console.log(error)
             )}
-            className="space-y-6"
+            className="space-y-6 mb-6"
           >
             <FormField
               control={form.control}
               name="emailAddress"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium">Email</FormLabel>
+                  <FormLabel className="text-sm font-medium text-[#52525B]">Email</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="jane.doe@gmail.com"
@@ -124,12 +124,12 @@ export default function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   <div className="flex items-center justify-between">
-                    <FormLabel className="text-sm font-medium">
+                    <FormLabel className="text-sm font-medium text-[#52525B]">
                       Password
                     </FormLabel>
                     <a
                       href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-[#242440] hover:text-foreground transition-colors"
                     >
                       Forgot your password?
                     </a>
@@ -175,7 +175,7 @@ export default function LoginForm() {
                       disabled={isLoading}
                     />
                   </FormControl>
-                  <FormLabel className="font-normal cursor-pointer">
+                  <FormLabel className="font-normal cursor-pointer text-[#52525B]">
                     Stay signed in for a week
                   </FormLabel>
                 </FormItem>
@@ -184,7 +184,7 @@ export default function LoginForm() {
 
             <Button
               type="submit"
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              className="w-full bg-[#242440] text-white hover:bg-[#242440]/90 rounded-[4px] text-sm font-normal"
               disabled={isLoading}
             >
               {isLoading ? "Signing in..." : "Continue"}
@@ -194,25 +194,39 @@ export default function LoginForm() {
 
         <Link
           href="#"
-          className="mt-6 text-center text-sm text-muted-foreground"
+          className="mt-6 flex w-full items-center justify-center text-center text-sm text-[#242440] font-normal hover:text-[#242440]/90"
         >
           Validate your new account
         </Link>
       </div>
 
-      <div className="mt-6 space-y-2 text-center">
-        <p className="text-sm text-muted-foreground">
+      <div className="space-y-2 px-4 text-start text-sm">
+        <p className="text-[#52525B]">
           Don&apos;t have an account?{" "}
           <Link
-            href="/booking"
-            className="font-semibold text-foreground hover:underline transition-colors"
+            href="#"
+            className="font-normal text-[#222822] hover:underline transition-colors"
           >
             Book a Session First!
           </Link>
-        </p>
-        <p className="text-xs text-muted-foreground">
-          © Getstac · Contact · Privacy & terms
-        </p>
+        </p>  
+        <div className="flex items-center text-[#52525B]">
+          <p>© Getstac</p>
+          <span className="mx-2">.</span>
+         <Link
+            href="#"
+            className="font-normal hover:underline transition-colors"
+          >
+            Contact
+          </Link>
+          <span className="mx-2">.</span>
+          <Link
+            href="#"
+            className="font-normal hover:underline transition-colors"
+          >
+            Privacy & terms
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -23,7 +23,6 @@ export default function HomePage() {
 
     setIsLoading(true);
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success(`We've sent early access details to ${email}`);
       setEmail("");
@@ -40,8 +39,8 @@ export default function HomePage() {
       <Header />
 
       <div className="relative flex min-h-[calc(100vh-80px)] flex-col items-center justify-center overflow-hidden px-6 py-12 md:px-12 md:py-20">
-        <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2 md:gap-8 lg:gap-12">
-          <div className="flex flex-col justify-center">
+        <div className="flex items-center justify-center w-full">
+          <div className="flex flex-col justify-center max-w-2xl item-center">
             <h1 className="text-balance text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
               Cash on demand for POS Agents.
             </h1>
@@ -51,7 +50,6 @@ export default function HomePage() {
               never turn a customer away. Clear fees. Fast support.
             </p>
 
-            {/* Email Form */}
             <form
               onSubmit={handleEarlyAccess}
               className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-2"
@@ -73,15 +71,9 @@ export default function HomePage() {
               </Button>
             </form>
           </div>
-
-          {/* Right Side - Product Screenshot Area */}
-          <div className="relative flex items-center justify-center">
-
-          </div>
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

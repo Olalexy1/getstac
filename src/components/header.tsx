@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   const [isOpen, setOpen] = useState(false);
@@ -16,13 +17,16 @@ export default function Header() {
   return (
     <header className="w-full sticky top-0 z-50 bg-slate-950 text-white">
       <nav className="container mx-auto flex items-center justify-between px-6 py-4 md:px-12">
-        {/* Logo Section */}
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-sm font-bold text-slate-950">
-              G
-            </div>
-            <span className="text-xl font-bold text-white">Getsac</span>
+            <Image
+              src="/images/getstac-logo.png"
+              sizes="20px"
+              alt="Logo"
+              width={20}
+              height={20}
+            />
+            <span className="text-xl font-bold text-white">Getstac</span>
           </Link>
           <Link
             href="/"
@@ -45,12 +49,12 @@ export default function Header() {
           ))}
           <Link href="/sign-in">
             <Button className="bg-white text-slate-950 hover:bg-gray-100">
-              Get Started
+              Login
             </Button>
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
+
         <div className="flex md:hidden items-center gap-2">
           <Button
             variant="ghost"
@@ -62,7 +66,6 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="md:hidden bg-slate-900 border-t border-slate-800 shadow-lg">
           <div className="flex flex-col gap-4 px-6 py-4">
@@ -78,7 +81,7 @@ export default function Header() {
             ))}
             <Link href="/sign-in" onClick={() => setOpen(false)}>
               <Button className="w-full bg-white text-slate-950 hover:bg-gray-100">
-                Get Started
+                Login
               </Button>
             </Link>
           </div>

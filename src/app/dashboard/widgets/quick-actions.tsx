@@ -16,16 +16,16 @@ export function QuickActions({
   onCreateRegion,
 }: QuickActionsProps) {
   return (
-    <Card className="bg-white border-gray-200 rounded-md">
+    <Card className="bg-white rounded-md border border-gray-200 gap-2 h-full">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-900">
+        <CardTitle className="text-[16px] font-medium text-[#242440]">
           Quick Actions
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-4 mb-2 my-auto">
         <Button
           variant="outline"
-          className="w-full justify-start border-gray-300 text-gray-700 hover:bg-gray-50 h-12 bg-transparent"
+          className="w-full justify-start border-[#454745] text-[#242440] h-10 bg-transparent"
           onClick={onCreateLocation}
         >
           <CircleDashed className="mr-2 h-4 w-4" />
@@ -33,7 +33,7 @@ export function QuickActions({
         </Button>
         <Button
           variant="outline"
-          className="w-full justify-start border-gray-300 text-gray-700 hover:bg-gray-50 h-12 bg-transparent"
+          className="w-full justify-start border-[#454745] text-[#242440] h-10 bg-transparent"
           onClick={onCreateManager}
         >
           <CircleDashed className="mr-2 h-4 w-4" />
@@ -41,7 +41,7 @@ export function QuickActions({
         </Button>
         <Button
           variant="outline"
-          className="w-full justify-start border-gray-300 text-gray-700 hover:bg-gray-50 h-12 bg-transparent"
+          className="w-full justify-start border-[#454745] text-[#242440] h-10 bg-transparent"
           onClick={onCreateRegion}
         >
           <CircleDashed className="mr-2 h-4 w-4" />

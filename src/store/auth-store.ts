@@ -1,4 +1,3 @@
-import { BookSessionValues } from "@/schemas/booking-schema";
 import { AuthUser } from "@/types/auth";
 
 export interface AuthUserWithPassword extends AuthUser {
@@ -58,13 +57,5 @@ export function getAuthSession(): AuthUser | null {
 export function clearAuthSession() {
   if (typeof window !== "undefined") {
     localStorage.removeItem("auth-session");
-  }
-}
-
-export function saveBooking(booking: BookSessionValues) {
-  if (typeof window !== "undefined") {
-    const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    bookings.push({ ...booking, id: Date.now() });
-    localStorage.setItem("bookings", JSON.stringify(bookings));
   }
 }
