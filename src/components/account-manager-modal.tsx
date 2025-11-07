@@ -58,13 +58,8 @@ export const AccountManagerModal: React.FC<AccountManagerModalProps> = ({
 
       <DialogContent
         showCloseButton={false}
-        className="sm:max-w-md w-[] rounded-xl p-3"
+        className="sm:max-w-md rounded-xl p-3"
       >
-        {/* <DialogHeader className="space-y-2">
-         
-
-        </DialogHeader> */}
-
         <DialogHeader className="flex flex-row items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="p-2 rounded-md border border-primary/30 flex items-center justify-center text-primary">

@@ -28,8 +28,8 @@ export default function DashboardLayout({
   return (
     <DashboardUserContext.Provider value={authUser}>
       <SidebarProvider>
-        <AppSidebar variant="inset"/>
-        <SidebarInset>
+        <AppSidebar variant="sidebar"/>
+        <SidebarInset className="bg-[#F1F1F1]">
           <AppHeader user={authUser} />
           {children}
         </SidebarInset>

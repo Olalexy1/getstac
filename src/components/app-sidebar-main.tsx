@@ -23,31 +23,46 @@ export function NavMain({ items }: { items: NavItem[] }) {
     <SidebarGroup data-tour="nav-main">
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                tooltip={item.title}
-                isActive={isActive(pathname, item.url)}
-                className={cn(
-                  "px-2.5 py-4 text-[#04111199] h-auto data-[active=true]:bg-[#0A4F4D0D] focus:bg-[#0A4F4D0D] hover:bg-[#0A4F4D0D] font-[450]",
-                  isActive(pathname, item.url) &&
-                    "duration-200 ease-linear active:bg-[#0A4F4D0D] active:text-[#034748]"
+          {items.map((item) => {
+            const active = isActive(pathname, item.url);
+
+            return (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  isActive={active}
+                  asChild
+                  onClick={() => setOpenMobile(false)}
+                  className={cn(
+                    "px-2.5 py-4 text-[#101010] h-auto data-[active=true]:bg-[#242440] focus:bg-[#242440] font-normal",
+                    item.isBadge && "peer",
+                    "hover:bg-[#242440] hover:text-[#FFFFFF]",
+                    active && "duration-200 ease-linear active:bg-[#242440] active:text-[#FFFFFF]"
+                  )}
+                >
+                  <Link href={item.url} className="flex items-center gap-3">
+                    <item.icon
+                      className={cn("size-3.5!", active && "text-[#FFFFFF]")}
+                    />
+                    <span className={cn("text-[13px]", active && "text-[#FFFFFF]")}>
+                      {item.title}
+                    </span>
+                  </Link>
+                </SidebarMenuButton>
+
+                {item.isBadge && (
+                  <SidebarMenuBadge
+                    className={cn(
+                      "bg-[#242440] text-[#FFFFFF] rounded-full transition-colors",
+                      "peer-hover:bg-[#FFFFFF] peer-hover:text-[#242440]"
+                    )}
+                  >
+                    15
+                  </SidebarMenuBadge>
                 )}
-                asChild
-                onClick={() => setOpenMobile(false)}
-              >
-                <Link href={item.url} className="">
-                  {item.icon && <item.icon className="!size-5" />}
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-              {item.isBadge && (
-                <SidebarMenuBadge className="bg-primary/10 rounded-full">
-                  15
-                </SidebarMenuBadge>
-              )}
-            </SidebarMenuItem>
-          ))}
+              </SidebarMenuItem>
+            );
+          })}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

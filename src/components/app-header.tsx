@@ -19,7 +19,7 @@ export function AppHeader({ user }: AppHeaderProps) {
     src: "/images/candice.png",
   };
   return (
-    <header className="w-full flex items-center ease-linear justify-between border-[#F1F1F1] gap-1 px-4 lg:gap-2 lg:px-6 py-3">
+    <header className="w-full flex items-center ease-linear justify-between gap-1 px-4 lg:gap-2 lg:px-6 py-3 border-[#F1F1F1] border mt-1 bg-[#FFFFFF]">
       <UserDisplay
         src="/avatar.jpg"
         fallback={formatInitials(user?.firstName, user?.lastName)}

@@ -27,7 +27,7 @@ export function NavSecondary({
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
-      <SidebarGroupLabel>Support</SidebarGroupLabel>
+        <SidebarGroupLabel>Support</SidebarGroupLabel>
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
@@ -36,15 +36,27 @@ export function NavSecondary({
                 asChild
                 isActive={isActive(pathname, item.url)}
                 className={cn(
-                  "px-2.5 py-4 text-[#04111199] h-auto data-[active=true]:bg-[#0A4F4D0D] focus:bg-[#0A4F4D0D] hover:bg-[#0A4F4D0D] font-[450]",
+                  "px-2.5 py-4 text-[#101010] h-auto data-[active=true]:bg-[#242440] focus:bg-[#242440] hover:bg-[#242440] hover:text-[#FFFFFF] font-normal",
                   isActive(pathname, item.url) &&
-                    "duration-200 ease-linear active:bg-[#0A4F4D0D] active:text-[#034748]"
+                    "duration-200 ease-linear active:bg-[#242440] active:text-[#FFFFFF]"
                 )}
                 onClick={() => setOpenMobile(false)}
               >
                 <Link href={item.url}>
-                  <item.icon className="size-6!" />
-                  <span>{item.title}</span>
+                  <item.icon
+                    className={cn(
+                      "size-3.5!",
+                      isActive(pathname, item.url) && "text-[#FFFFFF]"
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "text-[13px]",
+                      isActive(pathname, item.url) && "text-[#FFFFFF]"
+                    )}
+                  >
+                    {item.title}
+                  </span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
