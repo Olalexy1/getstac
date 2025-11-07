@@ -231,14 +231,14 @@ export const NotificationPopover: React.FC = () => {
     <div className="flex w-full flex-col items-center justify-center text-card-foreground">
       <div className="w-full px-4 py-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Transactions</h3>
+          <h3 className="text-lg font-semibold">Notifications</h3>
           {unreadCount > 0 && (
             <Badge variant="secondary">{unreadCount} new</Badge>
           )}
         </div>
         <p className="text-sm text-muted-foreground mt-1">
           {unreadCount > 0
-            ? `You have ${unreadCount} unread transaction${unreadCount > 1 ? "s" : ""}`
+            ? `You have ${unreadCount} unread notification${unreadCount > 1 ? "s" : ""}`
             : "You're all caught up!"}
         </p>
 
