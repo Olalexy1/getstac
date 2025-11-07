@@ -60,14 +60,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     </span>
                   </div>
                 </a>
-                <SidebarTrigger className="-ml-1" />
+                <SidebarTrigger className="-ml-1 group-data-[collapsible=icon]:hidden" />
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
+        {/* Trigger shown when collapsed */}
+        <div className="hidden group-data-[collapsible=icon]:flex justify-center py-2">
+          <SidebarTrigger />
+        </div>
       </SidebarHeader>
       <SidebarContent>
-        <div className="flex items-center gap-2 px-3 py-2">
+        {/* Search - hidden when collapsed */}
+        <div className="flex items-center gap-2 px-3 py-2 group-data-[collapsible=icon]:hidden">
           <InputGroup>
             <InputGroupInput placeholder="Search" />
             <InputGroupAddon>

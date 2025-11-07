@@ -5,6 +5,7 @@ import { AccountManagerModal } from "./account-manager-modal";
 import NotificationPopover from "./notification-popover";
 import { UserDisplay } from "./user-display";
 import { formatInitials } from "@/lib/utils";
+import { SidebarTrigger } from "./ui/sidebar";
 
 interface AppHeaderProps {
   user: AuthUser | null;
@@ -20,6 +21,7 @@ export function AppHeader({ user }: AppHeaderProps) {
   };
   return (
     <header className="w-full flex items-center ease-linear justify-between gap-1 px-4 lg:gap-2 lg:px-6 py-3 border-[#F1F1F1] border mt-1 bg-[#FFFFFF]">
+      <SidebarTrigger className="-ml-1 md:hidden" />
       <UserDisplay
         src="/avatar.jpg"
         fallback={formatInitials(user?.firstName, user?.lastName)}

@@ -58,7 +58,7 @@ export const AccountManagerModal: React.FC<AccountManagerModalProps> = ({
 
       <DialogContent
         showCloseButton={false}
-        className="sm:max-w-md rounded-xl p-3"
+        className="sm:max-w-xl rounded-xl p-3"
       >
         <DialogHeader className="flex flex-row items-center justify-between">
           <div className="flex items-center gap-2">
@@ -76,11 +76,11 @@ export const AccountManagerModal: React.FC<AccountManagerModalProps> = ({
           </DialogClose>
         </DialogHeader>
 
-        <DialogTitle className="text-lg font-semibold text-[#1A1A2E]">
+        <DialogTitle className="text-lg font-semibold text-[#242440]">
           {manager.firstName + " " + manager.lastName} is your Account Manager
         </DialogTitle>
 
-        <DialogDescription className="text-sm text-muted-foreground">
+        <DialogDescription className="text-sm font-normal text-[#656565]">
           The fastest way to have issues resolved is to reach out to your
           account manager ASAP. Find your account manager’s details below.
         </DialogDescription>
@@ -96,11 +96,11 @@ export const AccountManagerModal: React.FC<AccountManagerModalProps> = ({
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="font-medium text-sm">
+            <p className="font-medium text-sm text-[#344054]">
               {manager.firstName + " " + manager.lastName}
             </p>
-            <p className="text-sm text-muted-foreground">{manager.email}</p>
-            <p className="text-sm text-muted-foreground">{manager.phone}</p>
+            <p className="text-sm text-[#475467]">{manager.email}</p>
+            <p className="text-sm text-[#475467]">{manager.phone}</p>
           </div>
         </div>
 

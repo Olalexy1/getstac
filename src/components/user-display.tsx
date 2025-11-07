@@ -16,7 +16,7 @@ export const UserDisplay: React.FC<Props> = ({
   store,
   isOnline,
 }) => (
-  <div className="flex items-center gap-3">
+  <div className="items-center gap-3 hidden md:flex">
     <div className="relative">
       <Avatar>
         <AvatarImage src={src} />

@@ -162,12 +162,12 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
       onClick={handleClick}
     >
       {!notification.is_read && (
-        <div className="w-2 h-2 mt-2 me-3 rounded-full bg-primary flex-shrink-0"></div>
+        <div className="w-2 h-2 mt-2 me-3 rounded-full bg-primary shrink-0"></div>
       )}
 
       <div
         className={cn(
-          "w-8 h-8 rounded-full flex items-center justify-center me-3 flex-shrink-0",
+          "w-8 h-8 rounded-full flex items-center justify-center me-3 shrink-0",
           getNotificationColor(notification.type)
         )}
       >
