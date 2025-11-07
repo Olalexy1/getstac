@@ -3,15 +3,17 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { FiltersBar, LocationsTable, StatCard } from "../widgets";
+import { FilterDialog } from "../widgets/filter-dialog";
+import { FilterState } from "@/types/location";
 
 const allLocations = Array.from({ length: 78 }, (_, i) => ({
   id: `loc-${i + 1}`,
   name: `Bokku - Location ${i + 1}`,
   region: `Region ${Math.ceil((i + 1) / 12)}`,
   manager: `Manager ${i % 5 === 0 ? "A" : i % 5 === 1 ? "B" : i % 5 === 2 ? "C" : i % 5 === 3 ? "D" : "E"}`,
-  openingBalance: `₦${(Math.random() * 10000000 + 1000000).toFixed(0)}`,
-  remainingBalance: `₦${(Math.random() * 2000000 + 100000).toFixed(0)}`,
-  amountMopped: `₦${(Math.random() * 5000000 + 500000).toFixed(0)}`,
+  openingBalance: `₦${(Math.round(Math.random() * 10000000 + 1000000)).toLocaleString('en-US')}`,
+  remainingBalance: `₦${(Math.round(Math.random() * 2000000 + 100000)).toLocaleString('en-US')}`,
+  amountMopped: `₦${(Math.round(Math.random() * 5000000 + 500000)).toLocaleString('en-US')}`,
   feeStatus: i % 2 === 0 ? "Daily Fee" : "Weekend Fee",
 }));
 
@@ -20,16 +22,80 @@ const ITEMS_PER_PAGE = 5;
 export default function LocationsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilters, setActiveFilters] = useState<string[]>([
-    "All stores",
-    "Surulere, Ojodu",
-  ]);
+  const [filters, setFilters] = useState<FilterState>({
+    regions: [],
+    managers: [],
+    feeStatus: [],
+  });
+  const [showFilterDialog, setShowFilterDialog] = useState(false);
 
-  const filteredLocations = allLocations.filter(
-    (location) =>
+  const filteredLocations = allLocations.filter((location) => {
+    const matchesSearch =
+      searchQuery === "" ||
       location.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      location.manager.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      location.manager.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      location.region.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesRegion =
+      filters.regions.length === 0 || filters.regions.includes(location.region);
+
+    const matchesManager =
+      filters.managers.length === 0 ||
+      filters.managers.includes(location.manager);
+
+    const matchesFeeStatus =
+      filters.feeStatus.length === 0 ||
+      filters.feeStatus.includes(location.feeStatus);
+
+    return matchesSearch && matchesRegion && matchesManager && matchesFeeStatus;
+  });
+
+  const handleFiltersChange = (newFilters: FilterState) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const activeLocations = filteredLocations.length;
+
+  const activeFilterPills: Array<{ label: string; onRemove: () => void }> = [];
+
+  filters.regions.forEach((region) => {
+    activeFilterPills.push({
+      label: region,
+      onRemove: () =>
+        setFilters((prev) => ({
+          ...prev,
+          regions: prev.regions.filter((r) => r !== region),
+        })),
+    });
+  });
+
+  filters.managers.forEach((manager) => {
+    activeFilterPills.push({
+      label: manager,
+      onRemove: () =>
+        setFilters((prev) => ({
+          ...prev,
+          managers: prev.managers.filter((m) => m !== manager),
+        })),
+    });
+  });
+
+  filters.feeStatus.forEach((status) => {
+    activeFilterPills.push({
+      label: status,
+      onRemove: () =>
+        setFilters((prev) => ({
+          ...prev,
+          feeStatus: prev.feeStatus.filter((s) => s !== status),
+        })),
+    });
+  });
 
   const totalPages = Math.ceil(filteredLocations.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -43,16 +109,25 @@ export default function LocationsPage() {
   };
 
   const handleClearFilter = (filter: string) => {
-    setActiveFilters((prev) => prev.filter((f) => f !== filter));
+    const filterCategories: (keyof FilterState)[] = ['regions', 'managers', 'feeStatus'];
+    
+    for (const category of filterCategories) {
+      if (filters[category].includes(filter)) {
+        setFilters(prev => ({
+          ...prev,
+          [category]: prev[category].filter(f => f !== filter)
+        }));
+        break;
+      }
+    }
+    
     toast.info("Filter removed", {
       description: `${filter} has been removed`,
     });
   };
 
   const handleMoreFilters = () => {
-    toast.info("Filters", {
-      description: "Advanced filters dialog would open here",
-    });
+    setShowFilterDialog(true);
   };
 
   return (
@@ -69,7 +144,7 @@ export default function LocationsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            <StatCard label="Total Active Locations" value="66" />
+            <StatCard label="Total Active Locations" value={activeLocations.toString()} />
             <StatCard label="Total Deactivated Locations" value="10" />
             <StatCard label="Locations with Cash" value="10" />
             <StatCard label="Locations without Cash" value="10" />
@@ -79,7 +154,8 @@ export default function LocationsPage() {
             onSearch={setSearchQuery}
             onClearFilter={handleClearFilter}
             onMoreFilters={handleMoreFilters}
-            activeFilters={activeFilters}
+            activeFilters={activeFilterPills}
+            handleSearchChange={handleSearchChange}
           />
 
           <LocationsTable
@@ -92,6 +168,14 @@ export default function LocationsPage() {
           />
         </div>
       </div>
+
+      <FilterDialog
+        open={showFilterDialog}
+        onOpenChange={setShowFilterDialog}
+        filters={filters}
+        onApplyFilters={handleFiltersChange}
+        allLocations={allLocations}
+      />
     </section>
   );
 }

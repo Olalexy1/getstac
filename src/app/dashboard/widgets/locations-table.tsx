@@ -4,17 +4,7 @@ import { useState, useMemo } from "react";
 import { ArrowDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Pagination } from "./pagination";
-
-interface Location {
-  id: string;
-  name: string;
-  region: string;
-  manager: string;
-  openingBalance: string;
-  remainingBalance: string;
-  amountMopped: string;
-  feeStatus: string;
-}
+import { Location } from "@/types/location";
 
 interface LocationsTableProps {
   data: Location[];
