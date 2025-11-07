@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GetStac - POS Management Dashboard
 
-## Getting Started
+A modern dashboard application for managing Point of Sale (POS) locations, built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Authentication** - Secure login
+- **Dashboard** - Overview of key metrics and statistics
+- **Location Management** - View and filter POS locations
+- **Responsive Design** - Works on desktop and mobile devices
+- **Modern UI** - Built with shadcn/ui components
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **State Management**: React Context + Local Storage
+- **Form Handling**: React Hook Form + Zod
+- **Icons**: [Lucide Icons](https://lucide.dev/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.0.0 or later
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-username/getstac.git
+   cd getstac
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn
+   # or
+   pnpm install
+   ```
+
+3. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 🔐 Demo Login
+
+Use the following credentials to log in:
+
+| Email | Password | Name |
+|-------|----------|------|
+| jane.doe@gmail.com | password123 | Jane Doe |
+| john.smith@gmail.com | password456 | John Smith |
+
+## 🏗️ Project Structure
+
+```
+/src
+  /app               # App router pages and layouts
+  /components        # Reusable UI components
+  /lib               # Utility functions and config
+  /store             # Global state management
+  /types             # TypeScript type definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📝 Development Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Key Decisions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Authentication**
+   - Client-side authentication stored in localStorage
+   - Mock authentication for development
 
-## Learn More
+2. **State Management**
+   - React Context for global state
+   - Local Storage for persistence
+   - Optimistic UI updates where applicable
 
-To learn more about Next.js, take a look at the following resources:
+3. **Styling**
+   - Tailwind CSS for utility-first styling
+   - CSS Modules for component-scoped styles
+   - Responsive design with mobile-first approach
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Performance**
+   - Code splitting with dynamic imports
+   - Image optimization with Next/Image
+   - Lazy loading for non-critical components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Dependencies
 
-## Deploy on Vercel
+- `next`: 14.0.0
+- `react`: ^18.2.0
+- `tailwindcss`: ^3.3.0
+- `@radix-ui/react-dialog`: ^1.0.0
+- `lucide-react`: ^0.260.0
+- `sonner`: ^1.0.0
+- `zod`: ^3.22.0
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [shadcn/ui Documentation](https://ui.shadcn.com/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
